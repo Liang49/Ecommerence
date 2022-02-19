@@ -1,29 +1,33 @@
 import "./styles.css";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Card, Typography } from "@material-ui/core";
 import Navbar from "./Navbar.js";
 import fake from "./fake.json";
 import AddIcon from "@mui/icons-material/Add";
 import ButtonUnstyled from "@mui/base/ButtonUnstyled";
-
 export default function App() {
+  const [image, newimage] = useState([]);
+
+  // const hello = fake.map((item) => <div>{item.title}</div>); //
+
   return (
     <div className="App">
-      {fake[0].title}
-
+      {fake[0].image}
       <Navbar />
 
       <div className="item">
-        <Card>
-          <Typography gutterBottom variant="h5" component="h2">
-            <h1>hello</h1>
-            <h1>hello</h1>
-            <ButtonUnstyled>
-              <AddIcon />
-              Add to Cart
-            </ButtonUnstyled>
-          </Typography>
-        </Card>
+        {fake.map((item) => (
+          <Card>
+            <Typography gutterBottom variant="h5" component="h2">
+              <h1>hello</h1>
+              {item.title}
+              <ButtonUnstyled>
+                <AddIcon />
+                Add to Cart
+              </ButtonUnstyled>
+            </Typography>
+          </Card>
+        ))}
         <Card>
           <Typography gutterBottom variant="h5" component="h2">
             <h1>hello</h1>
