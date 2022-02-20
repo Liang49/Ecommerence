@@ -17,32 +17,22 @@ export default function App() {
 
       <div className="item">
         {fake.map((item) => (
-          <Card>
-            <Typography gutterBottom variant="h5" component="h2">
-              <h1>hello</h1>
-              {item.title}
-              <ButtonUnstyled>
-                <AddIcon />
-                Add to Cart
-              </ButtonUnstyled>
-            </Typography>
-          </Card>
+          <div className="text">
+            <Card>
+              <Typography gutterBottom variant="h5" component="h2">
+                <div className="box">
+                  <h1>hello</h1>
+                  {item.title}
+
+                  <ButtonUnstyled>
+                    <AddIcon />
+                    Add to Cart
+                  </ButtonUnstyled>
+                </div>
+              </Typography>
+            </Card>
+          </div>
         ))}
-        <Card>
-          <Typography gutterBottom variant="h5" component="h2">
-            <h1>hello</h1>
-          </Typography>
-        </Card>
-        <Card>
-          <Typography gutterBottom variant="h5" component="h2">
-            <h1>hello</h1>
-          </Typography>
-        </Card>
-        <Card>
-          <Typography gutterBottom variant="h5" component="h2">
-            <h1>hello</h1>
-          </Typography>
-        </Card>
       </div>
     </div>
   );

@@ -5,7 +5,14 @@
 }
 .item {
   display: flex;
-  justify-content: space-between;
+  flex-wrap: wrap;
+  justify-content: center;
 }
-.cart {
+.text {
+  flex: 1 0 21%;
+}
+
+.box {
+  height: 400px;
+  width: 25%;
 }
