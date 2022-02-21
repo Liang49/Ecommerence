@@ -7,43 +7,39 @@ import AddIcon from "@mui/icons-material/Add";
 import ButtonUnstyled from "@mui/base/ButtonUnstyled";
 export default function App() {
   const [image, newimage] = useState([]);
-
   // const hello = fake.map((item) => <div>{item.title}</div>); //
-
+  const [title, settitle] = useState([]);
+  const [modaldata] = useState([]);
+  const handleClick = (title) => {
+    settitle(title);
+    console.log(settitle);
+  };
+  console.log(settitle);
   return (
     <div className="App">
       {fake[0].image}
-      <Navbar />
+      <Navbar title={settitle} total={title} data={modaldata} />
 
       <div className="item">
         {fake.map((item) => (
           <div className="text">
             <Card>
-              <Typography gutterBottom variant="h5" component="h2">
-                <div className="box">
+              <div className="box">
+                <Typography gutterBottom variant="body2" component="h2">
                   <h1>hello</h1>
-                  {item.title}
-
-                  <ButtonUnstyled>
+                  <div className="open">{item.title}</div>
+                  <ButtonUnstyled
+                    onClick={() => settitle(title.concat(item.title))}
+                  >
                     <AddIcon />
                     Add to Cart
                   </ButtonUnstyled>
-                </div>
-              </Typography>
+                </Typography>
+              </div>
             </Card>
           </div>
         ))}
       </div>
     </div>
   );
-}
-
-function Hello(props) {
-  return <h1>Hello</h1>;
-}
-
-class Hello2 extends React.Component {
-  render() {
-    return <h1>Hello</h1>;
-  }
 }
