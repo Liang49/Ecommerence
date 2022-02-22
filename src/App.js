@@ -13,7 +13,15 @@ export default function App() {
   const [title, settitle] = useState([]);
   const [cart, setCart] = useState([]);
   const [modaldata] = useState([]);
+
   const handleClick = (item) => {
+    const incart = cart.find((quan) => quan.title === item.title);
+
+    if (incart) {
+      incart.quantity++;
+    } else {
+      incart.quantity = 0;
+    }
     setCart([...cart, item]);
   };
 

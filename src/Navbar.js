@@ -20,7 +20,7 @@ const customStyles = {
   }
 };
 
-export default function Navbar({ title, total, cart, removeClick }) {
+export default function Navbar({ title, total, cart, removeClick, quantity }) {
   const [isOpen, setIsOpen] = useState(false);
 
   function openModal() {
@@ -48,7 +48,7 @@ export default function Navbar({ title, total, cart, removeClick }) {
               <div className="itemlist">
                 {cart.map((item, index) => (
                   <div key={index}>
-                    {item.id}
+                    {item.id} x{item.quantity}
                     <ButtonUnstyled onClick={() => removeClick(item)}>
                       Remove from cart{" "}
                     </ButtonUnstyled>
