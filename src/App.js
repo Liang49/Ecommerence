@@ -8,29 +8,38 @@ import ButtonUnstyled from "@mui/base/ButtonUnstyled";
 export default function App() {
   const [image, newimage] = useState([]);
   // const hello = fake.map((item) => <div>{item.title}</div>); //
+  // settitle(title.concat(item.title))//
+
   const [title, settitle] = useState([]);
+  const [cart, setCart] = useState([]);
   const [modaldata] = useState([]);
-  const handleClick = (title) => {
-    settitle(title);
-    console.log(settitle);
+  const handleClick = (item) => {
+    setCart([...cart, item]);
   };
-  console.log(settitle);
+
+  const removeClick = (remove) => {
+    setCart(cart.filter((item) => item !== remove));
+  };
+
   return (
     <div className="App">
       {fake[0].image}
-      <Navbar title={settitle} total={title} data={modaldata} />
+      <Navbar
+        title={settitle}
+        total={title}
+        cart={cart}
+        removeClick={removeClick}
+      />
 
       <div className="item">
-        {fake.map((item) => (
-          <div className="text">
+        {fake.map((item, index) => (
+          <div className="text" key={index}>
             <Card>
               <div className="box">
                 <Typography gutterBottom variant="body2" component="h2">
-                  <h1>hello</h1>
+                  <div>hello</div>
                   <div className="open">{item.title}</div>
-                  <ButtonUnstyled
-                    onClick={() => settitle(title.concat(item.title))}
-                  >
+                  <ButtonUnstyled onClick={() => handleClick(item)}>
                     <AddIcon />
                     Add to Cart
                   </ButtonUnstyled>

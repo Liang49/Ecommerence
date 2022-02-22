@@ -5,6 +5,7 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Cart from "./Cart.js";
 import Modal from "react-modal";
+import ButtonUnstyled from "@mui/base/ButtonUnstyled";
 
 Modal.setAppElement("#root");
 
@@ -19,7 +20,7 @@ const customStyles = {
   }
 };
 
-export default function Navbar({ title, total, data }) {
+export default function Navbar({ title, total, cart, removeClick }) {
   const [isOpen, setIsOpen] = useState(false);
 
   function openModal() {
@@ -29,6 +30,7 @@ export default function Navbar({ title, total, data }) {
   function closeModal() {
     setIsOpen(false);
   }
+
   return (
     <div>
       <AppBar position="fixed">
@@ -36,7 +38,7 @@ export default function Navbar({ title, total, data }) {
           <Typography variant="h3" sx={{ flexGrow: 1 }}>
             helloffffff
           </Typography>
-          <Badge badgeContent={2} color="secondary">
+          <Badge badgeContent={cart.length} color="secondary">
             <ShoppingCartIcon onClick={openModal} />
             <Modal
               isOpen={isOpen}
@@ -44,7 +46,14 @@ export default function Navbar({ title, total, data }) {
               onRequestClose={closeModal}
             >
               <div className="itemlist">
-                <h2>item:{total}</h2>
+                {cart.map((item, index) => (
+                  <div key={index}>
+                    {item.id}
+                    <ButtonUnstyled onClick={() => removeClick(item)}>
+                      Remove from cart{" "}
+                    </ButtonUnstyled>
+                  </div>
+                ))}
               </div>
             </Modal>
           </Badge>
