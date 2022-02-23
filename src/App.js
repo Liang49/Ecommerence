@@ -13,22 +13,51 @@ export default function App() {
   const [title, settitle] = useState([]);
   const [cart, setCart] = useState([]);
   const [modaldata] = useState([]);
-
   const handleClick = (item) => {
-    const incart = cart.find((quan) => quan.title === item.title);
-
+    let incart = cart.find((quan) => quan.title === item.title);
+    let newcart = [...cart];
     if (incart) {
       incart.quantity++;
     } else {
-      incart.quantity = 0;
+      incart = {
+        ...item,
+        quantity: 1
+      };
+
+      newcart.push(incart);
     }
-    setCart([...cart, item]);
+    setCart(newcart);
   };
 
   const removeClick = (remove) => {
     setCart(cart.filter((item) => item !== remove));
   };
 
+  const increase = (item) => {
+    setCart((cart) =>
+      cart.map((things) =>
+        item === things
+          ? {
+              ...things,
+              quantity: item.quantity + (item.quantity < 100 ? 1 : 0)
+            }
+          : things
+      )
+    );
+  };
+
+  const decrease = (item) => {
+    setCart((cart) =>
+      cart.map((things) =>
+        item === things
+          ? {
+              ...things,
+              quantity: item.quantity - (item.quantity > 1 ? 1 : 0)
+            }
+          : things
+      )
+    );
+  };
   return (
     <div className="App">
       {fake[0].image}
@@ -37,6 +66,8 @@ export default function App() {
         total={title}
         cart={cart}
         removeClick={removeClick}
+        increase={increase}
+        decrease={decrease}
       />
 
       <div className="item">
