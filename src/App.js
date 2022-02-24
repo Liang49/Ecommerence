@@ -1,18 +1,14 @@
 import "./styles.css";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Card, Typography } from "@material-ui/core";
 import Navbar from "./Navbar.js";
 import fake from "./fake.json";
-import AddIcon from "@mui/icons-material/Add";
-import ButtonUnstyled from "@mui/base/ButtonUnstyled";
 export default function App() {
-  const [image, newimage] = useState([]);
   // const hello = fake.map((item) => <div>{item.title}</div>); //
   // settitle(title.concat(item.title))//
 
   const [title, settitle] = useState([]);
   const [cart, setCart] = useState([]);
-  const [modaldata] = useState([]);
   const handleClick = (item) => {
     let incart = cart.find((quan) => quan.title === item.title);
     let newcart = [...cart];
@@ -60,7 +56,6 @@ export default function App() {
   };
   return (
     <div className="App">
-      {fake[0].image}
       <Navbar
         title={settitle}
         total={title}
@@ -76,12 +71,21 @@ export default function App() {
             <Card>
               <div className="box">
                 <Typography gutterBottom variant="body2" component="h2">
-                  <div>hello</div>
+                  <img
+                    src={item.image}
+                    height={150}
+                    width={100}
+                    alt="missing"
+                  />
+
                   <div className="open">{item.title}</div>
-                  <ButtonUnstyled onClick={() => handleClick(item)}>
-                    <AddIcon />
+                  <div className="price">{item.price}$</div>
+                  <button
+                    className="addtocart"
+                    onClick={() => handleClick(item)}
+                  >
                     Add to Cart
-                  </ButtonUnstyled>
+                  </button>
                 </Typography>
               </div>
             </Card>

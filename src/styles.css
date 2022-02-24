@@ -3,6 +3,7 @@
   text-align: center;
   margin-top: 70px;
 }
+
 .item {
   display: flex;
   flex-wrap: wrap;
@@ -16,5 +17,25 @@
   height: 300px;
 }
 
-.open {
+.addtocart {
+  font-size: 1rem;
+  border: none;
+  padding: 10px;
+  background: linear-gradient(to bottom, #9be2fe 0%, #67d1fb 100%);
+}
+
+.price {
+  font-weight: bold;
+}
+
+.addsub {
+  border: none;
+  background: linear-gradient(to bottom, #9be2fe 0%, #67d1fb 100%);
+  font-size: 1rem;
+  margin-top: 5px;
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
 }

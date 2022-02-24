@@ -3,9 +3,7 @@ import { AppBar, IconButton, StyledBadge, Badge } from "@material-ui/core";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import Cart from "./Cart.js";
 import Modal from "react-modal";
-import ButtonUnstyled from "@mui/base/ButtonUnstyled";
 
 Modal.setAppElement("#root");
 
@@ -43,7 +41,7 @@ export default function Navbar({
       <AppBar position="fixed">
         <Toolbar>
           <Typography variant="h3" sx={{ flexGrow: 1 }}>
-            helloffffff
+            Shop at my LZ
           </Typography>
           <Badge badgeContent={cart.length} color="secondary">
             <ShoppingCartIcon onClick={openModal} />
@@ -53,20 +51,29 @@ export default function Navbar({
               onRequestClose={closeModal}
             >
               <div className="itemlist">
+                <h1>Item in cart</h1>
                 {cart.map((item, index) => (
                   <div key={index}>
-                    <ButtonUnstyled
+                    <div className="top">
+                      <img src={item.image} width={50} alt="missing" />
+                      <button onClick={() => removeClick(item)}>x</button>
+                    </div>
+                    <div className="nameof" style={{ fontSize: 20 }}>
+                      {item.title}
+                    </div>
+                    <button
+                      className="addsub"
                       onClick={() => {
                         decrease(item);
                       }}
                     >
                       -
-                    </ButtonUnstyled>
-                    {item.id} x{item.quantity}
-                    <button onClick={() => increase(item)}>+</button>
-                    <ButtonUnstyled onClick={() => removeClick(item)}>
-                      Remove from cart{" "}
-                    </ButtonUnstyled>
+                    </button>
+                    x{item.quantity}
+                    <button className="addsub" onClick={() => increase(item)}>
+                      +
+                    </button>
+                    <div className="total">total: {item.quantity * 30}</div>
                   </div>
                 ))}
               </div>
