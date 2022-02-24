@@ -56,11 +56,17 @@ export default function Navbar({
                   <div key={index}>
                     <div className="top">
                       <img src={item.image} width={50} alt="missing" />
-                      <button onClick={() => removeClick(item)}>x</button>
+                      <button
+                        className="remove"
+                        onClick={() => removeClick(item)}
+                      >
+                        x
+                      </button>
                     </div>
                     <div className="nameof" style={{ fontSize: 20 }}>
                       {item.title}
                     </div>
+                    <div style={{ fontWeight: "bold" }}>${item.price}</div>
                     <button
                       className="addsub"
                       onClick={() => {
@@ -69,13 +75,27 @@ export default function Navbar({
                     >
                       -
                     </button>
-                    x{item.quantity}
+                    <div className="boxbutton">{item.quantity}</div>
                     <button className="addsub" onClick={() => increase(item)}>
                       +
                     </button>
-                    <div className="total">total: {item.quantity * 30}</div>
                   </div>
                 ))}
+              </div>
+
+              <div className="checkout">
+                {cart.length ? (
+                  <div>
+                    Total : ${" "}
+                    {cart.reduce(
+                      (total, item) => total + item.quantity * item.price,
+                      0
+                    )}
+                    <button className="out">Check Out</button>
+                  </div>
+                ) : (
+                  <i>You have not add anything in cart</i>
+                )}
               </div>
             </Modal>
           </Badge>
