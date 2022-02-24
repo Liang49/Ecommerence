@@ -63,7 +63,10 @@
   font-size: 2rem;
 }
 .out {
+  display: inline-block;
   background-color: orange;
   border: none;
   padding: 1rem;
+  margin: 1rem;
+  margin-right: auto;
 }
